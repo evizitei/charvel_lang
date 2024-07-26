@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include "lexer.h"
 
 class ProperAST {
 public:
@@ -62,3 +63,9 @@ public:
     FunctionAST(std::unique_ptr<PrototypeAST> Proto, std::unique_ptr<ProperAST> Body) 
         : Proto(std::move(Proto)), Body(std::move(Body)){}
 };
+
+
+static int CurrentToken;
+static int getNextToken() {
+    return CurrentToken = get_next_token();
+}

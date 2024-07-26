@@ -11,7 +11,7 @@ enum Token {
 static std::string TitleStr; // Filled in if tok_title
 static double PerAnnumVal;        // Filled in if tok_per_annum
 
-static int gettoken() {
+static int get_next_token() {
     static int LastChar = ' ';
     while (isspace(LastChar))
         LastChar = getchar();
@@ -38,7 +38,7 @@ static int gettoken() {
           LastChar = getchar();
         while (LastChar != EOF && LastChar != '\n' && LastChar != '\r');
         if (LastChar != EOF)
-          return gettoken();
+          return get_next_token();
     }
     if (LastChar == EOF)
         return tok_retire;
