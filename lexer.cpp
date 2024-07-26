@@ -9,7 +9,7 @@ enum Token {
 };
 
 static std::string TitleStr; // Filled in if tok_title
-static double PerAnnumVal;        // Filled in if tok_per_annum
+static double PerAnnumVal;        // Filled in if tok_per_annum, exposed via header
 
 static int get_next_token() {
     static int LastChar = ' ';

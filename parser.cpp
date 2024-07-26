@@ -2,6 +2,8 @@
 #include <vector>
 #include "lexer.h"
 
+extern double PerAnnumVal; // from lexer.h
+
 class ProperAST {
 public:
     virtual ~ProperAST() = default;
@@ -68,4 +70,20 @@ public:
 static int CurrentToken;
 static int getNextToken() {
     return CurrentToken = get_next_token();
+}
+
+std::unique_ptr<ProperAST> LogError(const char *Str) {
+    fprintf(stderr, "Error: %s\n", Str);
+    return nullptr;
+}
+
+std::unique_ptr<PrototypeAST> LogErrorP(const char *Str) {
+    LogError(Str);
+    return nullptr;
+}
+
+static std::unique_ptr<ProperAST> ParsePerAnnumExpr() {
+    auto Result = std::make_unique<PerAnnumAST>(PerAnnumVal);
+    getNextToken();
+    return std::move(Result);
 }
