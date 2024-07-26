@@ -3,7 +3,7 @@
 enum Token {
     tok_retire = -1, // eof
     tok_propose = -2,  // define
-    tok_engage = -3,   // extern
+    tok_request = -3,   // extern
     tok_title = -4,    // identifier
     tok_per_annum = -5 // number
 };
@@ -20,7 +20,7 @@ static int gettoken() {
         while (isalnum((LastChar = getchar())))
             TitleStr += LastChar;
         if (TitleStr == "propose") return tok_propose;
-        if (TitleStr == "engage") return tok_engage;
+        if (TitleStr == "request") return tok_request;
         return tok_title;
     }
     if (isdigit(LastChar) || LastChar == '.') {   // Number: [0-9.]+
