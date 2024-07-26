@@ -40,4 +40,10 @@ static int gettoken() {
         if (LastChar != EOF)
           return gettoken();
     }
+    if (LastChar == EOF)
+        return tok_retire;
+    
+    int ThisChar = LastChar;
+    LastChar = getchar();
+    return ThisChar;
 }
