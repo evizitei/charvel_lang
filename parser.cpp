@@ -40,3 +40,25 @@ public:
     CallUponAST(const std::string &Callee, std::vector<std::unique_ptr<ProperAST>> Args) 
       : Callee(Callee), Args(std::move(Args)) {}
 };
+
+
+class PrototypeAST {
+    std::string Name;
+    std::vector<std::string> Args;
+
+public:
+    PrototypeAST(const std::string &Name, std::vector<std::string> Args) 
+      : Name(Name), Args(std::move(Args)) {}
+    
+    const std::string &getName() const { return Name; }
+};
+
+
+class FunctionAST {
+    std::unique_ptr<PrototypeAST> Proto;
+    std::unique_ptr<ProperAST> Body;
+
+public:
+    FunctionAST(std::unique_ptr<PrototypeAST> Proto, std::unique_ptr<ProperAST> Body) 
+        : Proto(std::move(Proto)), Body(std::move(Body)){}
+};
