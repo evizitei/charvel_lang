@@ -23,4 +23,13 @@ static int gettoken() {
         if (TitleStr == "engage") return tok_engage;
         return tok_title;
     }
+    if (isdigit(LastChar) || LastChar == '.') {   // Number: [0-9.]+
+        std::string NumStr;
+        do {
+            NumStr += LastChar;
+            LastChar = getchar();
+        } while (isdigit(LastChar) || LastChar == '.');
+        PerAnnumVal = strtod(NumStr.c_str(), 0);
+        return tok_per_annum;
+    }
 }
