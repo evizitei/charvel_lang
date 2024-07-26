@@ -32,4 +32,12 @@ static int gettoken() {
         PerAnnumVal = strtod(NumStr.c_str(), 0);
         return tok_per_annum;
     }
+    if(LastChar == '#') {
+        // Comment until end of line.
+        do
+          LastChar = getchar();
+        while (LastChar != EOF && LastChar != '\n' && LastChar != '\r');
+        if (LastChar != EOF)
+          return gettoken();
+    }
 }
